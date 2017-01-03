@@ -1,7 +1,22 @@
 package com.codecool.lottery.controller;
 
-/**
- * Created by patrik on 2017.01.03..
- */
+import com.codecool.lottery.service.APIService;
+import spark.Request;
+import spark.Response;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class LotteryAPIController {
+
+    private final APIService apiService;
+
+    public LotteryAPIController(APIService apiService) {
+        this.apiService = apiService;
+
+    }
+
+    public String status(Request request, Response response) {
+        return "ok";
+    }
 }
