@@ -22,25 +22,8 @@ public class NewsletterAPIController {
     public NewsletterAPIController(APIService apiService) {
     }
 
-    public Boolean isRunning() throws URISyntaxException, IOException {
-        logger.info("Checking Service status");
-
-        Boolean running = execute("/status").equalsIgnoreCase("ok");
-
-        if (running) {
-            logger.info("Service is running");
-        } else {
-            logger.warn("Service is not running");
-        }
-
-        return running;
-    }
     public String status(spark.Request request, Response response) {
         return "ok";
     }
 
-    private static String execute(String url) throws IOException, URISyntaxException {
-        URI uri = new URIBuilder(SERVICE_URL + url).build();
-        return Request.Get(uri).execute().returnContent().asString();
-    }
 }
