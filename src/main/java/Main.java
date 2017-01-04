@@ -1,4 +1,5 @@
 import com.codecool.lottery.controller.LotteryAPIController;
+import com.codecool.lottery.service.APIService;
 
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ public class Main {
         hash.put("fradi", "ujpest");
         hash.put("juhu", "huhuu");
 
-        LotteryAPIController lofasz = new LotteryAPIController();
+        LotteryAPIController lofasz = new LotteryAPIController(APIService.getInstance());
         System.out.println(lofasz.getWinner(hash));
 
     }
