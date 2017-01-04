@@ -1,5 +1,6 @@
 package com.codecool.lottery.controller;
 
+import com.codecool.lottery.service.APIService;
 import spark.Request;
 import spark.Response;
 
@@ -12,10 +13,18 @@ import java.util.Random;
  */
 public class LotteryAPIController {
 
+    public LotteryAPIController(APIService apiService) {
+
+    }
+
     public String getWinner(HashMap<String, String> users) {
         Random generator = new Random();
         Object[] values = users.values().toArray();
         String randomValue = (String) values[generator.nextInt(values.length)];
         return randomValue;
+    }
+
+    public String status(Request request, Response response) {
+        return "ok";
     }
 }
