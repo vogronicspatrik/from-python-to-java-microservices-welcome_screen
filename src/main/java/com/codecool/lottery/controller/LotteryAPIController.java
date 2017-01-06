@@ -19,13 +19,9 @@ public class LotteryAPIController {
 
     }
 
-    public String getWinner() throws JSONException {
-        String jsonExample = "{\n" +
-                "  \"email@asdas.hu\": \"User 1\",\n" +
-                "  \"email@dasdas.hu\": \"User 2\"\n" +
-                "}";
+    public String getWinner(Request req, Response res) throws JSONException {
 
-        JSONObject object = new JSONObject(jsonExample);
+        JSONObject object = new JSONObject(req.body());
         Iterator<String> keysItr = object.keys();
         Random generator = new Random();
         Integer randomValue =  generator.nextInt(object.length());
@@ -36,12 +32,9 @@ public class LotteryAPIController {
             if(count == randomValue){
                 break;
             }
-
             count += 1;
-
         }
         return key;
-
     }
 
     public String status(Request request, Response response) {
