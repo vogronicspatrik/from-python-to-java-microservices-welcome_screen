@@ -1,5 +1,6 @@
 import com.codecool.lottery.controller.LotteryAPIController;
 import com.codecool.lottery.service.APIService;
+import org.json.JSONException;
 
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ public class Main {
 
     private static final int PORT = 9000;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JSONException {
 
         HashMap<String, String> hash = new HashMap();
         hash.put("anyad", "apad");
@@ -19,7 +20,8 @@ public class Main {
         hash.put("juhu", "huhuu");
 
         LotteryAPIController lofasz = new LotteryAPIController(APIService.getInstance());
-        System.out.println(lofasz.getWinner(hash));
+        System.out.println(lofasz.getWinner());
+
 
     }
 

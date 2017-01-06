@@ -1,11 +1,13 @@
 package com.codecool.lottery.controller;
 
 import com.codecool.lottery.service.APIService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -17,11 +19,22 @@ public class LotteryAPIController {
 
     }
 
-    public String getWinner(HashMap<String, String> users) {
+    public String getWinner(Request req, Response res) throws JSONException {
+
+        JSONObject object = new JSONObject(req.body());
+        Iterator<String> keysItr = object.keys();
         Random generator = new Random();
-        Object[] values = users.values().toArray();
-        String randomValue = (String) values[generator.nextInt(values.length)];
-        return randomValue;
+        Integer randomValue =  generator.nextInt(object.length());
+        Integer count = 0;
+        String key = "";
+        while(keysItr.hasNext()){
+            key = keysItr.next();
+            if(count == randomValue){
+                break;
+            }
+            count += 1;
+        }
+        return key;
     }
 
     public String status(Request request, Response response) {
